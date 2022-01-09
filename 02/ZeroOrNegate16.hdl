@@ -1,0 +1,10 @@
+CHIP ZeroOrNegate16{
+     IN in[16], z, n;
+     OUT out[16];
+
+     PARTS:
+     Split16(in=false, out=Zero);
+     Mux16(a=in, b=Zero, sel=z, out=SelfOrZero);
+     Not16(in=SelfOrZero, out=Negated);
+     Mux16(a=SelfOrZero, b=Negated, sel=n, out=out);
+}
